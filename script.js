@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice()
 {
     let choice = "";
@@ -26,4 +29,17 @@ function getHumanChoice()
  return humanChoice.toLowerCase();   
 }
 
-console.log(getHumanChoice());
+function playRound(humanChoice, computerChoice)
+{
+    if(humanChoice === computerChoice)
+        {
+            console.log("It's a tie!")
+        }
+        else if(humanChoice === "rock")
+            {
+                if(computerChoice === "paper")
+                    {
+                        console.log("You lose!")
+                    }
+            }
+}
