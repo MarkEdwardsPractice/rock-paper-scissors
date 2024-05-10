@@ -69,15 +69,39 @@ function playRound(humanChoice, computerChoice)
                                 console.log("You win!");
                             }
                     }
+                    else
+                    {
+                        console.log("Your selection not rock, paper, or scissors.");
+                    }
 }
-
 function printChoices(humanChoice, computerChoice)
 {
     console.log("Your choice: " + humanChoice);
     console.log("Computer choice: " + computerChoice);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+
+
+
+function playGame()
+{
+    let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+
+}
+
+playGame();
