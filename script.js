@@ -25,12 +25,13 @@ function getComputerChoice()
 
 function getHumanChoice()
 {
- let humanChoice = prompt("Type Rock, Paper, or Scissors to make your choice.", "Rock");
+ let humanChoice = prompt("Type Rock, Paper, or Scissors to make your choice.");
  return humanChoice.toLowerCase();   
 }
 
 function playRound(humanChoice, computerChoice)
 {
+    printChoices(humanChoice, computerChoice);
     if(humanChoice === computerChoice)
         {
             console.log("It's a tie!")
@@ -41,5 +42,42 @@ function playRound(humanChoice, computerChoice)
                     {
                         console.log("You lose!")
                     }
+                    else
+                    {
+                        console.log("You win!");
+                    }
             }
+            else if(humanChoice === "paper")
+                {
+                    if(computerChoice === "scissors")
+                        {
+                            console.log("You lose!");
+                        }
+                        else
+                        {
+                            console.log("You win!");
+                        }
+                }
+                else if(humanChoice === "scissors")
+                    {
+                        if(computerChoice === "paper")
+                            {
+                                console.log("You lose!");
+                            }
+                            else
+                            {
+                                console.log("You win!");
+                            }
+                    }
 }
+
+function printChoices(humanChoice, computerChoice)
+{
+    console.log("Your choice: " + humanChoice);
+    console.log("Computer choice: " + computerChoice);
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
