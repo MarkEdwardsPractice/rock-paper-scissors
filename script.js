@@ -1,8 +1,11 @@
 let humanScore = 0;
 let computerScore = 0;
+let counter = 0;
 
 const choices = document.querySelector("#container");
 const results = document.querySelector("#displayResults");
+const scoreBox = document.querySelector("#displayWinner");
+const scoreDisplay = document.querySelector("#score");
 
 let humanSelection = "";  
 
@@ -42,10 +45,12 @@ function playRound(humanChoice, computerChoice)
     {
         if(computerChoice === "paper")
         {
+            computerScore++;
             winner = "You lose!"
         }
         else
         {
+            humanScore++;
             winner = "You win!";
         }
     }
@@ -53,10 +58,12 @@ function playRound(humanChoice, computerChoice)
     {
         if(computerChoice === "scissors")
         {
+            computerScore++;
             winner = "You lose!";
         }
         else
         {
+            humanScore++;
             winner ="You win!";
         }
     }
@@ -64,10 +71,12 @@ function playRound(humanChoice, computerChoice)
     {
         if(computerChoice === "paper")
         {
+            computerScore++;
             winner = "You lose!";
         }
         else
         {
+            humanScore++;
             winner = "You win!" ;
         }
     }
@@ -82,6 +91,9 @@ function printResults(humanChoice, computerChoice)
     const div = document.createElement("div");
     const para = document.createElement("p");
 
+    div.style.border = "2px solid black";
+    div.style.height = "122px";
+    div.style.width = "88px";
     para.textContent = `Your choice: ${humanChoice}
                         Computer choice: ${computerChoice}
                         ${playRound(humanChoice, computerChoice)}`;
@@ -90,13 +102,38 @@ function printResults(humanChoice, computerChoice)
     results.appendChild(div);
 }
 
+function printScores()
+{
+    scoreDisplay.textContent = `Your Score: ${humanScore}
+    Computer Score: ${computerScore}`
+    
+    
+}
+
 function playGame()
 {
+    
     printResults(humanSelection, getComputerChoice());
-
+    printScores();
 }
 
 choices.addEventListener('click', (e) => {
-    humanSelection = e.target.id;
-    playGame();
+
+    if(humanScore >= 5 || computerScore >= 5)
+    {
+        if(humanScore > computerScore)
+        {
+            scoreDisplay.textContent = "You win!";
+        }
+        else
+        {
+            scoreDisplay.textContent = "You lose!";
+        }
+        choices.removeEventListener('click');
+    }
+    else
+    {
+        humanSelection = e.target.id;
+        playGame();
+    }
  });
