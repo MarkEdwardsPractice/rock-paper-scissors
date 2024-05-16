@@ -92,15 +92,39 @@ function printResults(humanChoice, computerChoice)
 {
     const div = document.createElement("div");
     const para = document.createElement("p");
+    const para2 = document.createElement("p");
+    const para3 = document.createElement("p");
+    const gameResults = playRound(humanChoice, computerChoice);
 
     div.style.border = "2px solid black";
-    div.style.height = "122px";
+    div.style.height = "150px";
     div.style.width = "88px";
-    para.textContent = `Your choice: ${humanChoice}
-                        Computer choice: ${computerChoice}
-                        ${playRound(humanChoice, computerChoice)}`;
+    div.style.fontSize = "16px";
+    div.style.textAlign = "center";
+    para.style.margin = "5px";
+    para2.style.margin = "5px";
+    para3.style.margin = "5px";
+    para3.style.fontWeight = "bold";
+    para.textContent = `Your choice: ${humanChoice}`; 
+    para2.textContent = `Computer choice: ${computerChoice}`;
+    
+    if(gameResults === "You win!")
+    {
+        para3.style.color = "green";
+    }
+    else if(gameResults === "It's a tie!")
+    {
+        para3.style.color = "yellow";
+    }
+    else
+    {
+        para3.style.color = "red";
+    }
+    para3.textContent = `${gameResults}`;
 
     div.appendChild(para);
+    div.appendChild(para2);
+    div.appendChild(para3);
     results.appendChild(div);
 }
 
@@ -118,7 +142,7 @@ function addReplayButton()
         const replayButton = document.createElement("button");
 
         replayButton.textContent = "Replay";
-        replayButton.style.textAlign = "center";
+        replayButton.style.margin = "auto";
 
         body.append(replayButton);
 
