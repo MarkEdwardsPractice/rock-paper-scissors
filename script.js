@@ -82,21 +82,7 @@ function printChoices(humanChoice, computerChoice)
 
 function playGame()
 {
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
+    
 
 }
 
