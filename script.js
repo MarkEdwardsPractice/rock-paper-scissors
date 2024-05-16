@@ -1,13 +1,15 @@
 let humanScore = 0;
 let computerScore = 0;
-let counter = 0;
+
 
 const choices = document.querySelector("#container");
 const results = document.querySelector("#displayResults");
 const scoreBox = document.querySelector("#displayWinner");
 const scoreDisplay = document.querySelector("#score");
+const body = document.querySelector("body");
 
 let humanSelection = "";  
+
 
 
 function getComputerChoice()
@@ -112,21 +114,26 @@ function printScores()
 
 function addReplayButton()
 {
-    choices.removeEventListener('click');
+    
         const replayButton = document.createElement("button");
 
         replayButton.textContent = "Replay";
+        replayButton.style.textAlign = "center";
 
-        results.appendChild(replayButton);
+        body.append(replayButton);
+
+        replayButton.addEventListener('click', () =>
+        {
+            humanScore = 0;
+            computerScore = 0;
+            console.log("human score: " + humanScore);
+            console.log("computer score: " + computerScore);
+            body.removeChild(replayButton);
+            toggleOn();
+            
+        });
 }
 
-function resetGame()
-{
-    while(results.firstChild)
-    {
-        results.removeChild(results.lastChild);
-    }
-}
 
 function playGame()
 {
@@ -135,24 +142,53 @@ function playGame()
     printScores();
 }
 
-choices.addEventListener('click', (e) => {
-
-    if(humanScore >= 5 || computerScore >= 5)
+function resetGame()
+{
+    while(results.firstChild)
     {
-        if(humanScore > computerScore)
-        {
+        results.removeChild(results.lastChild);
+    }
+    
+}
+
+
+function toggleOff()
+{
+    results.style.display = "none";
+    choices.style.display = "none";
+    
+    
+}
+
+function toggleOn()
+{
+    results.style.display = "flex";
+    choices.style.display = "block";
+}
+
+
+
+ choices.addEventListener('click', (e) => {
+
+    if(humanScore > 4 || computerScore > 4)
+    {
+         toggleOff();
+         addReplayButton();
+         resetGame();
+         if(humanScore > computerScore)
+         {
             scoreDisplay.textContent = "You win!";
+         }
+         else
+         {
+            scoreDisplay.textContent = "You lose!";
+         }
+                
+        
         }
         else
         {
-            scoreDisplay.textContent = "You lose!";
+            humanSelection = e.target.id;
+            playGame();
         }
-        addReplayButton();
-
-    }
-    else
-    {
-        humanSelection = e.target.id;
-        playGame();
-    }
- });
+});
