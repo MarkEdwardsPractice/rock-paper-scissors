@@ -110,6 +110,24 @@ function printScores()
     
 }
 
+function addReplayButton()
+{
+    choices.removeEventListener('click');
+        const replayButton = document.createElement("button");
+
+        replayButton.textContent = "Replay";
+
+        results.appendChild(replayButton);
+}
+
+function resetGame()
+{
+    while(results.firstChild)
+    {
+        results.removeChild(results.lastChild);
+    }
+}
+
 function playGame()
 {
     
@@ -129,7 +147,8 @@ choices.addEventListener('click', (e) => {
         {
             scoreDisplay.textContent = "You lose!";
         }
-        choices.removeEventListener('click');
+        addReplayButton();
+
     }
     else
     {
