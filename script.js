@@ -2,6 +2,7 @@ let humanScore = 0;
 let computerScore = 0;
 
 const choices = document.querySelector("#container");
+const results = document.querySelector("#displayResults");
 
 let humanSelection = "";  
 
@@ -26,67 +27,72 @@ function getComputerChoice()
     }
 
     return choice;
-}
-
- 
-let computerSelection = getComputerChoice();    
+}   
     
 
 
 function playRound(humanChoice, computerChoice)
 {
-    printChoices(humanChoice, computerChoice);
+    let winner = "";
     if(humanChoice === computerChoice)
     {
-        console.log("It's a tie!")
+        winner = "It's a tie!"
     }
     else if(humanChoice === "rock")
     {
         if(computerChoice === "paper")
         {
-            console.log("You lose!")
+            winner = "You lose!"
         }
         else
         {
-            console.log("You win!");
+            winner = "You win!";
         }
     }
     else if(humanChoice === "paper")
     {
         if(computerChoice === "scissors")
         {
-            console.log("You lose!");
+            winner = "You lose!";
         }
         else
         {
-            console.log("You win!");
+            winner ="You win!";
         }
     }
     else if(humanChoice === "scissors")
     {
         if(computerChoice === "paper")
         {
-            console.log("You lose!");
+            winner = "You lose!";
         }
         else
         {
-            console.log("You win!");
+            winner = "You win!" ;
         }
     }
     else
     {
-        console.log("Your selection not rock, paper, or scissors.");
+        winner = "Your selection not rock, paper, or scissors.";
     }
+    return winner;
 }
-function printChoices(humanChoice, computerChoice)
+function printResults(humanChoice, computerChoice)
 {
-    console.log("Your choice: " + humanChoice);
-    console.log("Computer choice: " + computerChoice);
+    const div = document.createElement("div");
+    const para = document.createElement("p");
+
+    para.textContent = `Your choice: ${humanChoice}
+                        Computer choice: ${computerChoice}
+                        ${playRound(humanChoice, computerChoice)}`;
+
+    div.appendChild(para);
+    results.appendChild(div);
 }
 
 function playGame()
 {
-    playRound(humanSelection, computerSelection);
+    printResults(humanSelection, getComputerChoice());
 
 }
 
