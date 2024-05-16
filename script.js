@@ -110,15 +110,15 @@ function printResults(humanChoice, computerChoice)
     
     if(gameResults === "You win!")
     {
-        para3.style.color = "green";
+        div.style.backgroundColor = "green";
     }
     else if(gameResults === "It's a tie!")
     {
-        para3.style.color = "yellow";
+        div.style.backgroundColor = "yellow";
     }
     else
     {
-        para3.style.color = "red";
+        div.style.backgroundColor = "red";
     }
     para3.textContent = `${gameResults}`;
 
